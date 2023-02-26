@@ -18,8 +18,11 @@
 #include <SPI.h>
 #include "Fonts/FreeSansBold12pt7b.h"
 #include "Fonts/FreeMono9pt7b.h"
-#include "Fonts/FreeSans9pt7b.h"
 #include "Fonts/FreeSerif9pt7b.h"
+#include "Fonts/FreeSans9pt7b.h"
+#include "Fonts/FreeSans12pt7b.h"
+#include "Fonts/FreeSans18pt7b.h"
+#include "Fonts/FreeSans24pt7b.h"
 //#include "Fonts/"
 //#include "Fonts/"
 
@@ -42,31 +45,59 @@ void initialize_display()
     tft.setFont(&FreeSerif9pt7b);
     tft.setTextSize(1);
     tft.setCursor(5, 20);
-    tft.print("Ready...");
+//    tft.print("Ready...");
     delay(500);
 }
 
-void disp_test()
+void disp_test(int num)
 {
     char buff[20];
-    sprintf(buff, "%s", "ABCDEabcedfg123");
-    tft.setTextWrap(false);
-    tft.setTextColor(ST77XX_WHITE);
-    tft.setTextSize(1);
 
-    //tft.fillScreen(ST77XX_MAGENTA);
-    tft.setFont(&FreeMono9pt7b);
-    tft.setCursor(20, 50);
-    tft.println(buff);
+    if (num == 1)
+    {
+        sprintf(buff, "%s", "ABCDEabcedfg123");
+        tft.setTextWrap(false);
+        tft.setTextColor(ST77XX_WHITE);
+        tft.setTextSize(1);
 
-    tft.setFont(&FreeSans9pt7b);
-    tft.setCursor(20, 70);
-    tft.println(buff);
+        //tft.fillScreen(ST77XX_MAGENTA);
+        tft.setFont(&FreeMono9pt7b);
+        tft.setCursor(20, 50);
+        tft.println(buff);
 
-    tft.setFont(&FreeSerif9pt7b);
-    tft.setCursor(20, 90);
-    tft.println(buff);
+        tft.setFont(&FreeSans9pt7b);
+        tft.setCursor(20, 70);
+        tft.println(buff);
 
+        tft.setFont(&FreeSerif9pt7b);
+        tft.setCursor(20, 90);
+        tft.println(buff);
+    }
+
+    if (num == 2)
+    {
+        sprintf(buff, "%s", "ABCDefg123");
+        tft.setTextWrap(false);
+        tft.setTextColor(ST77XX_WHITE);
+        tft.setTextSize(1);
+
+        //tft.fillScreen(ST77XX_MAGENTA);
+        tft.setFont(&FreeSans9pt7b);
+        tft.setCursor(20, 15);
+        tft.println(buff);
+
+        tft.setFont(&FreeSans12pt7b);
+        tft.setCursor(20, 40);
+        tft.println(buff);
+
+        tft.setFont(&FreeSans18pt7b);
+        tft.setCursor(20, 70);
+        tft.println(buff);
+
+        tft.setFont(&FreeSans24pt7b);
+        tft.setCursor(20, 110);
+        tft.println(buff);
+    }
     //delay(500);
 }
 
