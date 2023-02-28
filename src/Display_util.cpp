@@ -38,7 +38,8 @@ Adafruit_ST7735 tft = Adafruit_ST7735(TFT_CS, TFT_DC, TFT_RST);
 
 void initialize_display()
 {
-    tft.initR(INITR_GREENTAB);
+    //tft.initR(INITR_GREENTAB);
+    tft.initR(INITR_BLACKTAB);
     tft.fillScreen(ST77XX_MAGENTA);
     tft.setRotation(1);
     tft.setTextWrap(false);
