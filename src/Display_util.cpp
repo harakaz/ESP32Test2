@@ -13,6 +13,7 @@
 　(8)LED--------- 3V3
 
 */
+#include <Arduino.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_ST7735.h>
 #include <SPI.h>
@@ -52,26 +53,47 @@ void initialize_display()
 
 void disp_test(int num)
 {
-    char buff[20];
+    char buff[100], sbuff[100];
 
     if (num == 1)
     {
-        sprintf(buff, "%s", "ABCDEabcedfg123");
+        int16_t x, y;
+	    uint16_t w, h;
+
+
         tft.setTextWrap(false);
         tft.setTextColor(ST77XX_WHITE);
         tft.setTextSize(1);
 
         //tft.fillScreen(ST77XX_MAGENTA);
+        sprintf(buff, "%s", "ABCDEghijp123");
         tft.setFont(&FreeMono9pt7b);
-        tft.setCursor(20, 50);
+        tft.setCursor(5, 14);
+        tft.getTextBounds(buff, 5, 14, &x, &y, &w, &h);
+        sprintf(sbuff, "X=%d, Y=%d, W=%d, H=%d", x, y, w, h);
+        Serial.println(sbuff);
+        tft.fillRect(x, y, w, h, ST77XX_BLUE);
         tft.println(buff);
+        tft.drawLine(5, 14, 150, 14, ST77XX_RED);
 
+        sprintf(buff, "%s", "OPQRSghjp321");
+        tft.setCursor(5, 32);
+        tft.println(buff);
+        sprintf(buff, "%s", "ABCDghjp321");
+        tft.setCursor(5, 50);
+        tft.println(buff);
+        
+        sprintf(buff, "%s", "ABCDghjp321");
         tft.setFont(&FreeSans9pt7b);
-        tft.setCursor(20, 70);
+        tft.setCursor(5, 70);
+        tft.getTextBounds(buff, 5, 70, &x, &y, &w, &h);
+        sprintf(sbuff, "X=%d, Y=%d, W=%d, H=%d", x, y, w, h);
+        Serial.println(sbuff);
+        tft.fillRect(x, y, w, h, ST77XX_BLUE);
         tft.println(buff);
 
         tft.setFont(&FreeSerif9pt7b);
-        tft.setCursor(20, 90);
+        tft.setCursor(5, 90);
         tft.println(buff);
     }
 
@@ -84,19 +106,19 @@ void disp_test(int num)
 
         //tft.fillScreen(ST77XX_MAGENTA);
         tft.setFont(&FreeSans9pt7b);
-        tft.setCursor(20, 15);
+        tft.setCursor(5, 15);
         tft.println(buff);
 
         tft.setFont(&FreeSans12pt7b);
-        tft.setCursor(20, 40);
+        tft.setCursor(5, 40);
         tft.println(buff);
 
         tft.setFont(&FreeSans18pt7b);
-        tft.setCursor(20, 70);
+        tft.setCursor(5, 70);
         tft.println(buff);
 
         tft.setFont(&FreeSans24pt7b);
-        tft.setCursor(20, 110);
+        tft.setCursor(5, 110);
         tft.println(buff);
     }
     //delay(500);

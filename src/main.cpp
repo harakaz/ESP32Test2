@@ -1,5 +1,8 @@
-#include <Arduino.h>
+/**
 
+
+*/
+#include <Arduino.h>
 #include "Display_util.h"
 
 int led = 27;
@@ -14,7 +17,7 @@ void setup() {
   // Test TFT Display
   initialize_display();
   delay(1000);
-  disp_test(2);
+  disp_test(1);
 }
 
 void loop() {
