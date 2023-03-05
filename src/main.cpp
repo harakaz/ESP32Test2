@@ -16,8 +16,8 @@ void setup() {
 
   // Test TFT Display
   initialize_display();
-  delay(1000);
-  disp_test(1);
+  //disp_test(1);
+  drawText1();
 }
 
 void loop() {

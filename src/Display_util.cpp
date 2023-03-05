@@ -17,6 +17,7 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_ST7735.h>
 #include <SPI.h>
+#include "Display_util.h"
 #include "Fonts/FreeSansBold12pt7b.h"
 #include "Fonts/FreeMono9pt7b.h"
 #include "Fonts/FreeSerif9pt7b.h"
@@ -43,12 +44,34 @@ void initialize_display()
     tft.initR(INITR_BLACKTAB);
     tft.fillScreen(ST77XX_MAGENTA);
     tft.setRotation(1);
+    delay(200);
+}
+
+void drawText1()
+{
+    char txt[100];
+    sprintf(txt, "TestABC123");
+    drawTextLeftTop(txt, 10, 10, &FreeMono9pt7b, ST77XX_WHITE);
+    tft.fillRect(5, 50, 100, 10, COLOR_GRAY);
+}
+
+void drawTextLeftTop(char *dtext, int16_t left, int16_t top, const GFXfont *font, uint16_t color)
+{
+    int16_t x, y;
+    uint16_t w, h;
+
     tft.setTextWrap(false);
-    tft.setFont(&FreeSerif9pt7b);
+    tft.setTextColor(color);
     tft.setTextSize(1);
-    tft.setCursor(5, 20);
-//    tft.print("Ready...");
-    delay(500);
+    tft.setFont(font);
+    tft.getTextBounds(dtext, 0, 0, &x, &y, &w, &h);
+    tft.setCursor(left + x, top - y);
+    tft.println(dtext);
+    
+//    sprintf(sbuff, "X=%d, Y=%d, W=%d, H=%d", x, y, w, h);
+//    Serial.println(sbuff);
+//    tft.fillRect(x, y, w, h, ST77XX_BLUE);
+
 }
 
 void disp_test(int num)
